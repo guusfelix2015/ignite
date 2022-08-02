@@ -7,7 +7,6 @@ import { Sidebar } from "./components/Sidebar";
 
 const posts = [
   {
-    
     id: 1,
     author: {
       avatarUrl: "https://github.com/guusfelix2015.png",
@@ -55,6 +54,7 @@ export function App() {
           {posts.map((post) => {
             return (
               <Post
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}
