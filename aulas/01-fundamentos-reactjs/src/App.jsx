@@ -7,6 +7,7 @@ import { Sidebar } from "./components/Sidebar";
 
 const posts = [
   {
+    
     id: 1,
     author: {
       avatarUrl: "https://github.com/guusfelix2015.png",
