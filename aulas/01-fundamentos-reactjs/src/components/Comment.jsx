@@ -29,7 +29,7 @@ export function Comment({ content, onDeleteComment }) {
           <p>{content}</p>
         </div>
         <footer>
-          <button onClick={() => setLikeCount(likeCount + 1)}>
+          <button onClick={() => setLikeCount((prevLike) => prevLike + 1)}>
             <ThumbsUp size={20} />
             Apludir <span>{likeCount}</span>
           </button>
