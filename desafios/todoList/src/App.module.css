@@ -1,0 +1,84 @@
+.wrapper {
+  max-width: 128rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.todosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 2.4rem;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: -2.7rem;
+  gap: 1rem;
+}
+
+.inputWrapper input {
+  padding: 1.6rem;
+  gap: 8px;
+  height: 5.4rem;
+  background: var(--gray-500);
+  border: 1px solid #0d0d0d;
+  border-radius: 8px;
+  max-width: 100%;
+  width: 100%;
+  outline: none;
+  color: var(--gray-300);
+  font-size: 1.6rem;
+}
+
+.inputWrapper button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.6rem;
+  gap: 8px;
+  width: 9rem;
+  height: 5.2rem;
+  background: #1e6f9f;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  color: var(--gray-100);
+  font-weight: 700;
+}
+
+.inputWrapper button:hover {
+  background: #129ae9;
+}
+
+.inputWrapper input::placeholder {
+  color: #808080;
+  font-size: 1.6rem;
+  color: var(--gray-300);
+}
+
+.todosLenght {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.todosLenght .tasksCreated,
+.todosLenght .completeTasks {
+  display: flex;
+  gap: 10px;
+}
+
+.todosLenght .tasksCreated p {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.todosLenght .completeTasks p {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+
