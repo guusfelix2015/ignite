@@ -84,7 +84,7 @@ export const Separator = styled.div`
   justify-content: center;
 `
 
-export const StartCountDonwButton = styled.button`
+export const BaseCountDonwButton = styled.button`
   width: 100%;
   border: 0;
   padding: 1rem;
@@ -95,15 +95,26 @@ export const StartCountDonwButton = styled.button`
   gap: 0.5rem;
   font-weight: bold;
   cursor: pointer;
-  background: ${(p) => p.theme['green-500']};
   color: ${(p) => p.theme['gray-100']};
 
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
+`
+
+export const StartCountDonwButton = styled(BaseCountDonwButton)`
+  background: ${(p) => p.theme['green-500']};
 
   &:not(:disabled)hover {
     background: ${(p) => p.theme['green-700']};
+  }
+`
+
+export const StopCountDonwButton = styled(BaseCountDonwButton)`
+  background: ${(p) => p.theme['red-500']};
+
+  &:not(:disabled)hover {
+    background: ${(p) => p.theme['red-700']};
   }
 `
