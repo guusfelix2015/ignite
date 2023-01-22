@@ -1,11 +1,11 @@
-import { MouseEventHandler, useState } from "react";
-import s from "./App.module.css";
-import pluus from "./assets/pluus.svg";
-import { Header } from "./components/Header/Header";
-import { v4 as uuidv4 } from "uuid";
+import { MouseEventHandler, useState } from 'react';
+import s from './App.module.css';
+import pluus from './assets/pluus.svg';
+import { Header } from './components/Header/Header';
+import { v4 as uuidv4 } from 'uuid';
 
-import { NotTodo } from "./components/NotTodo/NotTodo";
-import { Todo } from "./components/Todo/Todo";
+import { NotTodo } from './components/NotTodo/NotTodo';
+import { Todo } from './components/Todo/Todo';
 
 interface Todo {
   todo: string;
@@ -15,7 +15,7 @@ interface Todo {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState("");
+  const [newTodo, setNewTodo] = useState('');
   const haveTodo = todos.length === 0;
 
   const countTodosHaveCompleted = todos.filter((todo) => {
@@ -27,7 +27,7 @@ function App() {
       ...prev,
       { todo: newTodo, isCompleted: false, id: uuidv4() },
     ]);
-    setNewTodo("");
+    setNewTodo('');
   };
 
   const changeIsComplete = (id: string) => {
@@ -50,6 +50,15 @@ function App() {
     setTodos(arrayWithItemRemoved);
   };
 
+  const handleGetTodo = (id: string) => {
+    const myTodo = todos.findIndex((myTodoValue) => {
+      if (myTodoValue.id === id) {
+        console.log(myTodoValue);
+      }
+    });
+    return myTodo;
+  };
+
   return (
     <>
       <Header />
@@ -58,11 +67,11 @@ function App() {
           <input
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
-            type="text"
-            placeholder="Adicione uma tarefa"
+            type='text'
+            placeholder='Adicione uma tarefa'
           />
           <button onClick={createTodo}>
-            Criar <img src={pluus} alt="Botão de adicionar" />
+            Criar <img src={pluus} alt='Botão de adicionar' />
           </button>
         </div>
 
@@ -87,6 +96,7 @@ function App() {
                 changeIsComplete={changeIsComplete}
                 handleDeleteTodo={handleDeleteTodo}
                 todo={todo}
+                handleGetTodo={handleGetTodo}
               />
             ))}
           </div>
