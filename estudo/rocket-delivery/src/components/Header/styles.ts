@@ -3,10 +3,14 @@ import styled, { css } from 'styled-components';
 export const HeaderContainer = styled.div`
   width: 100%;
   height: 5.5rem;
-  background: ${(p) => p.theme.colors['base-background']};
+  background: ${p => p.theme.colors['base-background']};
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
 
   > div {
     display: flex;
@@ -36,7 +40,7 @@ export const HeaderButton = styled.button<HeaderButtonProps>`
   border: none;
   padding: 0 0.5rem;
   position: relative;
-  font-size: ${(p) => p.theme.textSizes['text-regular-s']};
+  font-size: ${p => p.theme.textSizes['text-regular-s']};
 
   ${({ variant, theme }) => css`
     background: ${theme.colors[`brand-${variant}-light`]};
