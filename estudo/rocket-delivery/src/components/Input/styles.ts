@@ -8,6 +8,7 @@ export const InputStyleContainer = styled.input`
   transition: 0.4s;
   color: ${p => p.theme.colors['base-text']};
   font-size: 0.75rem;
+  padding: 1rem;
 
   &::placeholder {
     color: ${p => p.theme.colors['base-label']};

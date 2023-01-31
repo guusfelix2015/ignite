@@ -8,6 +8,7 @@ export const CoffesCartCardContainer = styled.div`
   border-bottom: 1px solid ${p => p.theme.colors['base-button']};
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
+  
   > div {
     display: flex;
     align-items: center;

@@ -1,13 +1,5 @@
-import styled from 'styled-components';
+import HomeTemplate from '@/templates/HomeTemplate'
 
-const Title = styled.h1`
-  color: red;
-`;
 export default function Home() {
-  return (
-    <div>
-      <p>Hello</p>
-      <Title>Title</Title>
-    </div>
-  );
+  return <HomeTemplate />
 }
