@@ -39,7 +39,7 @@ export function CofeeCard({ coffee }: CofeeProps) {
         <S.AddCartWrapper>
           <QuantityInput />
           <button>
-            <ShoppingCart size={22} weight='fill' />
+            <ShoppingCart size={20} weight='fill' />
           </button>
         </S.AddCartWrapper>
       </S.CardFooter>

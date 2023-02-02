@@ -3,7 +3,7 @@ import { ContainerIcons, IconContent } from './styles'
 interface IconComponentProps {
   bgColor: string
   icon: string | React.ReactNode
-  text: string
+  text?: string
 }
 
 export function IconComponent({ bgColor, icon, text }: IconComponentProps) {

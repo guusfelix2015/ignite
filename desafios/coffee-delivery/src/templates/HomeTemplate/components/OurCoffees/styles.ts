@@ -7,3 +7,10 @@ export const ContainerOurCoffees = styled.div`
     margin-bottom: 2.5rem;
   }
 `
+export const CoffeList = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 40px;
+  column-gap: 20px;
+`

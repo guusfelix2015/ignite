@@ -1,21 +1,53 @@
+import { QuantityInput } from '@/components/QuantityInput'
 import { RegularText, TitleText } from '@/components/Typography'
-import { CoffeeCardContainer, Tag } from './styles'
+import {
+  CoffeeCardContainer,
+  ContainerCardPrice,
+  ContainerIconsCart,
+  Tag
+} from './styles'
+import { ShoppingCart } from 'phosphor-react'
+import { formatMoney } from '@/utils/formatMoney'
 
-export function CoffeeCard() {
+export interface CoffeeCardProps {
+  id: number
+  tags: string[]
+  name: string
+  description: string
+  photo: string
+  price: number
+}
+
+interface Coffe {
+  coffe: CoffeeCardProps
+}
+
+export function CoffeeCard({ coffe }: Coffe) {
+  const price = formatMoney(coffe.price)
   return (
     <CoffeeCardContainer>
-      <img
-        src="https://s3-alpha-sig.figma.com/img/55b1/f9ee/64600f98b2bae456b96fdc624c4b4f47?Expires=1676246400&Signature=AaUbPU7K9fbN3leRMvSwyEtxOphDfSM9MoiL4zcAu0YGNf7KdKOxcS~~Il6GIjmjEBYdY5FkHj4bkG4z7q9Dy6LAF1mVsgaCxIIQ6v8Z87UwT-h6JZPMLuMD3rwXilj0uQPvE5jVApKp5BET5GqN3Hpc-cmCxPgMhkK70D8BGJ9H7A~wu4fGdkZqrAM6iO7mMk0oObM36VtSinuP9BazuYMjkmzBWsUEKkQ7WlGPV68rQKTg6CObd4nq4aJNmRdWf6LWGYJjGTnWttFreUtDWxyjE3cnAEjr4StZAT~PqfeZl90UCP10eiVr40IwBtWeMm8wy0yEehUt3sYZYcHTJA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
-        alt=""
-      />
+      <img src={`/images/coffees/${coffe.photo}`} />
       <Tag>
-        <span>Tradicional</span>
-        <span>Tradicional</span>
+        {coffe.tags?.map(tag => (
+          <span key={tag}>{tag}</span>
+        ))}
       </Tag>
-      <TitleText size="m">Expresso Tradicional</TitleText>
-      <RegularText size="s">
-        O tradicional café feito com água quente e grãos moídos
-      </RegularText>
+      <TitleText size="m">{coffe.name}</TitleText>
+      <RegularText size="s">{coffe.description}</RegularText>
+      <div>
+        <ContainerCardPrice>
+          <RegularText size="s">R$</RegularText>
+          <TitleText size="m" color="text">
+            {price}
+          </TitleText>
+        </ContainerCardPrice>
+        <ContainerIconsCart>
+          <QuantityInput />
+          <button className="button">
+            <ShoppingCart size={20} weight="fill" />
+          </button>
+        </ContainerIconsCart>
+      </div>
     </CoffeeCardContainer>
   )
 }
