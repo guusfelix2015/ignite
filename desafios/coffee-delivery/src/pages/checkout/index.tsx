@@ -1,3 +1,10 @@
+import { CompletedOrderForm } from './components/Form'
+import { CompleteOrderContainer } from './styles'
+
 export default function Teste() {
-  return <h1>Teste</h1>;
+  return (
+    <CompleteOrderContainer className="container">
+      <CompletedOrderForm />
+    </CompleteOrderContainer>
+  )
 }

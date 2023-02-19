@@ -3,6 +3,8 @@ import { RegularText, TitleText } from '../../../../components/Typography';
 import * as S from './styles';
 import { ShoppingCart } from 'phosphor-react';
 import { formatMoney } from '../../../../utils/formatMoney';
+import { useCart } from '../../../../hooks/useCart';
+import { useState } from 'react';
 
 export interface Coffe {
   id: number;
@@ -18,6 +20,27 @@ interface CofeeProps {
 }
 
 export function CofeeCard({ coffee }: CofeeProps) {
+  const [quantity, setQuantity] = useState(1);
+
+  function handleIncrement() {
+    setQuantity(state => state + 1);
+  }
+
+  function handleDecrement() {
+    if (quantity === 1) return;
+    setQuantity(state => state - 1);
+  }
+
+  const { addCoffeeToCart } = useCart();
+
+  function handleAddCoffeeToCart() {
+    const cofeeToAdd = {
+      ...coffee,
+      quantity,
+    };
+    addCoffeeToCart(cofeeToAdd);
+  }
+
   const formatPrice = formatMoney(coffee.price);
   return (
     <S.CoffeCardContainer>
@@ -37,8 +60,12 @@ export function CofeeCard({ coffee }: CofeeProps) {
           </TitleText>
         </div>
         <S.AddCartWrapper>
-          <QuantityInput />
-          <button>
+          <QuantityInput
+            onIncrement={handleIncrement}
+            onDecrement={handleDecrement}
+            quantity={quantity}
+          />
+          <button onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={20} weight='fill' />
           </button>
         </S.AddCartWrapper>
