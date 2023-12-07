@@ -7,8 +7,31 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styles';
+import z from "zod"
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const newTransactionFormSchema = z.object({
+  discription: z.string(),
+  price: z.number().positive(),
+  category: z.string(),
+  // type: z.enum(["income", "outcome"])
+})
+
+type newTransactionFormInput = z.infer<typeof newTransactionFormSchema>
+
+
 
 export function NewTransactionModal() {
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<newTransactionFormInput>({
+    resolver: zodResolver(newTransactionFormSchema)
+  })
+
+  function handleCreateNewTransaction(data: newTransactionFormInput) {
+    console.log(data)
+  }
+
+
   return (
     <Dialog.Portal>
       <Overlay />
@@ -17,10 +40,10 @@ export function NewTransactionModal() {
         <CloseButton>
           <X size={24} />
         </CloseButton>
-        <form action=''>
-          <input type='text' placeholder='Descrição' required />
-          <input type='number' placeholder='Preço' required />
-          <input type='text' placeholder='Categoria' required />
+        <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
+          <input type='text' placeholder='Descrição' required {...register("discription")} />
+          <input type='number' placeholder='Preço' required {...register("price", { valueAsNumber: true })} />
+          <input type='text' placeholder='Categoria' required {...register("category")} />
           <TransactionType>
             <TransactionTypeButton value='income' variant='income'>
               <ArrowCircleUp size={24} />
@@ -31,7 +54,7 @@ export function NewTransactionModal() {
               Saida
             </TransactionTypeButton>
           </TransactionType>
-          <button type='submit'>Cadastrar</button>
+          <button disabled={isSubmitting} type='submit'>Cadastrar</button>
         </form>
       </Content>
     </Dialog.Portal>

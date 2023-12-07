@@ -23,6 +23,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   useEffect(() => {
     loadTransactions();
   }, [transactions]);
+  
   return (
     <TransactionsContext.Provider value={{ transactions }}>
       {children}
