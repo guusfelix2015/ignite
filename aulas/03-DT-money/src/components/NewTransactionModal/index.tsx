@@ -10,9 +10,12 @@ import {
 import z from "zod"
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { api } from '../../lib/axios';
+import { useContext } from 'react';
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 const newTransactionFormSchema = z.object({
-  discription: z.string(),
+  description: z.string(),
   price: z.number().positive(),
   category: z.string(),
   type: z.enum(["income", "outcome"])
@@ -23,16 +26,27 @@ type newTransactionFormInput = z.infer<typeof newTransactionFormSchema>
 
 
 export function NewTransactionModal() {
-  const { register, handleSubmit, control, formState: { isSubmitting } } = useForm<newTransactionFormInput>({
+  const { createTransaction } = useContext(TransactionsContext)
+  const { register, handleSubmit, reset, control, formState: { isSubmitting } } = useForm<newTransactionFormInput>({
     resolver: zodResolver(newTransactionFormSchema),
     defaultValues: {
       type: "income"
     }
   })
 
-  function handleCreateNewTransaction(data: newTransactionFormInput) {
-    console.log(data)
-  }
+  async function handleCreateNewTransaction(data: newTransactionFormInput) {
+    const { description, price, category, type } = data
+      await createTransaction({
+        description,
+        price,
+        category,
+        type,
+        createdAt: new Date()
+      })
+
+
+    reset()
+    }
 
 
   return (
@@ -44,7 +58,7 @@ export function NewTransactionModal() {
           <X size={24} />
         </CloseButton>
         <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
-          <input type='text' placeholder='Descrição' required {...register("discription")} />
+          <input type='text' placeholder='Descrição' required {...register("description")} />
           <input type='number' placeholder='Preço' required {...register("price", { valueAsNumber: true })} />
           <input type='text' placeholder='Categoria' required {...register("category")} />
 
