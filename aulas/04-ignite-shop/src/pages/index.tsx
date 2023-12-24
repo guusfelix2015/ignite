@@ -4,15 +4,17 @@ import { useKeenSlider } from "keen-slider/react"
 import camiseta2 from "../assets/camisetas/2.png"
 import "keen-slider/keen-slider.min.css"
 
-export default function Home() {
+export default function Home(props) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
       spacing: 48
     }
   })
+
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
+      <h1>{JSON.stringify(props.list)}</h1>
       <Product className="keen-slider__slide">
         <Image src={camiseta2} width={520} height={480} alt="caliseta 2" />
         <footer>
@@ -44,4 +46,13 @@ export default function Home() {
 
     </HomeContainer>
   )
+}
+
+
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      list: [1, 2, 3]
+    }
+  }
 }
