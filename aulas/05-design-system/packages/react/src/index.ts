@@ -1,1 +1,1 @@
-console.log('react');
+import { colors } from '@ignite-ui/tokens'
